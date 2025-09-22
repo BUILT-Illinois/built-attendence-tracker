@@ -23,6 +23,9 @@ This project is a membership and attendance tracking system for B[U]ILT. It allo
 This repository will include the backend API logic and helper utilities. Frontend is hosted in our club website repository
 
 CD into built_attendance
+
 npm install
+
 npm install react-router
+
 npm start
