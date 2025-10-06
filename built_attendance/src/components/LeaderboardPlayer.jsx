@@ -1,3 +1,5 @@
+import '../assets/LeaderboardPlayer.css';
+
 function Leaderboard() {
     return (
     <div>

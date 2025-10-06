@@ -1,3 +1,5 @@
+import '../assets/Header.css';
+
 function Header () {
     return(
         <div>
