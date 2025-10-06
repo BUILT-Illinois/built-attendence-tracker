@@ -17,6 +17,7 @@ ReactDOM.createRoot(root).render(
       <Route path="login" element={<Login/>}/>
       <Route path="attendance" element={<Attendance/>}/>
       <Route path='leaderboard' element={<Leaderboard/>}/>
+      
     </Routes>
   </BrowserRouter>,
 );
