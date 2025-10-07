@@ -1,0 +1,23 @@
+.header {
+    background-color: #EAA580;
+    padding: 10px 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.built-img  {
+    height: 60px;
+    width: auto;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+a-image-link:focus {
+    outline: none;
+}
