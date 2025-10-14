@@ -9,12 +9,16 @@ function Header () {
                     <img className='built-img' src='https://built-illinois.org/built-logo.png'/>
                 </Link>
                 <Link to="/leaderboard">
-                    <h2>Leaderboard</h2>
+                    <h2 className='header-button'>Leaderboard</h2>
                 </Link>
-                <h2>Events</h2>
-                <h2>Check-In</h2>
-
-                <h2>Logout</h2>
+                <h2 className='header-button'>Events</h2>
+                <h2 className='header-button'>Check-In</h2>
+                
+                <div>
+                    {/* <img/> */}
+                    <h2>Name</h2>
+                    <h2>Logout</h2>
+                </div>
             </div>
         </div>
     );

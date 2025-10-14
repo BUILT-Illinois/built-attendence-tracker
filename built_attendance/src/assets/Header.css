@@ -1,11 +1,23 @@
 .header {
-    background-color: #EAA580;
+    background-color: #F6CDBB;
     padding: 10px 20px;
+    align-items: center;
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+}
+
+
+.header-button {
+    color: white;
+    margin: 0;
+    background-color: #8b4513;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .built-img  {
