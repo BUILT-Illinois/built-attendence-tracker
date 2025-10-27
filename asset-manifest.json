@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/built-attendence-tracker/static/css/main.a19af418.css",
+    "main.js": "/built-attendence-tracker/static/js/main.0682866d.js",
+    "static/js/453.c85b6177.chunk.js": "/built-attendence-tracker/static/js/453.c85b6177.chunk.js",
+    "index.html": "/built-attendence-tracker/index.html",
+    "main.a19af418.css.map": "/built-attendence-tracker/static/css/main.a19af418.css.map",
+    "main.0682866d.js.map": "/built-attendence-tracker/static/js/main.0682866d.js.map",
+    "453.c85b6177.chunk.js.map": "/built-attendence-tracker/static/js/453.c85b6177.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a19af418.css",
+    "static/js/main.0682866d.js"
+  ]
+}
