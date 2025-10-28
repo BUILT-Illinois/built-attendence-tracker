@@ -8,11 +8,13 @@ import Events from './pages/Events';
 import reportWebVitals from './reportWebVitals';
 import Attendance from './pages/Events';
 import Leaderboard from './pages/leaderboard';
+import Header from './components/Header';
 
 const root = document.getElementById("root");
 
 ReactDOM.createRoot(root).render(
   <BrowserRouter>
+    <Header/>
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="login" element={<Login/>}/>

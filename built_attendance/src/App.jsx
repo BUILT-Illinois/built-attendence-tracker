@@ -6,7 +6,6 @@ import UpcomingEvents from './components/UpcomingEvents';
 function App() {
   return (
     <div>
-      <Header/>
       <div>
         <UpcomingEvents/>
         {/* <Welcome/> */}

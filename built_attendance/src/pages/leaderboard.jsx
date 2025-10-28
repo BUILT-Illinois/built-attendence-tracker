@@ -4,7 +4,6 @@ import LeaderboardPlayer from "../components/LeaderboardPlayer";
 function Leaderboard() {
     return (
         <div>
-        <Header />
         Leaderboard Page
         <LeaderboardPlayer />
 
