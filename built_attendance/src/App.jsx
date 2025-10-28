@@ -9,7 +9,7 @@ function App() {
       <Header/>
       <div>
         <UpcomingEvents/>
-        <Welcome/>
+        {/* <Welcome/> */}
       </div>
     </div>
   );
