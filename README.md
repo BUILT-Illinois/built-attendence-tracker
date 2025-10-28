@@ -28,4 +28,4 @@ npm install
 
 npm install react-router
 
-npm start
+npm run start
