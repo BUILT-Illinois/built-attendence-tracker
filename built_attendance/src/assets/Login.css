@@ -8,8 +8,10 @@
 }
 
 .core {
-    /* width: 50vw; */
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .butt {
@@ -19,4 +21,11 @@
     border-radius: 50px;  
     background-color: white;
     border-color: #95644B;
+}
+.butt:hover {
+    cursor: pointer;
+}
+
+h1 {
+    font-family: 'Plus Jakarta Sans';
 }
