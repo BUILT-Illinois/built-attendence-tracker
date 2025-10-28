@@ -1,0 +1,22 @@
+.attendance-container {
+    background-image: url('../../public/Login.png');
+    color: #755341;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.core {
+    /* width: 50vw; */
+    margin: auto;
+}
+
+.butt {
+    color: #95644B;
+    padding: 2vw;
+    width: 15vw;
+    border-radius: 50px;  
+    background-color: white;
+    border-color: #95644B;
+}
