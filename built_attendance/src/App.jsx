@@ -1,11 +1,12 @@
 import './App.css';
 import Header from './components/Header';
-import UpcomingEvents from "./components/UpcomingEvents";
+import Welcome from './components/Welcome';
 
 function App() {
   return (
-    <div className=''>
-      <UpcomingEvents/>
+    <div>
+      <Welcome/>
+      {/* <img src=''></> */}
     </div>
   );
 }
