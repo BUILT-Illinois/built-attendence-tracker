@@ -8,7 +8,7 @@ function App() {
     <div>
       <div>
         <UpcomingEvents/>
-        {/* <Welcome/> */}
+        { <Welcome/> }
       </div>
     </div>
   );
