@@ -1,0 +1,50 @@
+.main_box{
+    width: 70vw;
+    background-color: #F4EFEF;
+    margin: auto;
+    
+}
+
+.Name_logo{
+    width: 2.5vw;
+}
+
+.upper_half_bar{
+    display: flex;
+    color: white;
+    font-size: 2vw;
+    gap: 0.5vw;
+}
+
+.upper_bar_1{
+    width: 10vw;
+    background-color: #E78B5B;
+}
+
+.upper_bar_2{
+    width: 30vw;
+    background-color: #E78B5B;
+    
+}
+
+.upper_bar_3{
+    width: 50vw;
+    background-color: #E78B5B;  
+}
+
+.lower_half_bar{
+    display: flex;
+    background-color: #9A4316;
+    color: white;    
+}
+
+.lower_bar_1{
+    width: 50vw;   
+}
+.lower_bar_2{
+    width: 50vw;   
+}
+.lower_bar_3{
+    width: 50vw;   
+}
+
