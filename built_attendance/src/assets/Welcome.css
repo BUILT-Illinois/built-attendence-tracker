@@ -1,86 +1,95 @@
+/* container for everything */
+.welcome-container {
+  position: relative;
+  min-height: 100vh;  
+  background-color: #fff;
+  overflow: hidden;
+}
+
+/* welcome heading */
 .welcome {
-    position: absolute;
-    top: 80px;
-    left: 4vw;
-    color: rgb(158, 113, 84);
-    font-size: 1.5vw
-  
-  }
-  .card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    border-radius: 10px;
-    position: absolute;
-    top: 150px;
-    left: 100px;
-    width: 700px;
-    height: 680px;
-    img {
-      /* border: 1px solid #ddd; */
-      /* border-radius: 4px; */
-      /* padding-left: 100px; */
-      /* height: 20vw; */
-      display: flex;
-      justify-content: center; /* Centers horizontally */
-      align-items: center;    /* Centers vertically */
-      height: 55%;
-      width: 55%;
-      margin: auto;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      max-width: 100%;
-    }
-  
-  }
-  .mini_card_1 {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    background-color: peachpuff;
-    text-align: center;
-    font-size: 20px;
-    color: rgb(158, 113, 84);
-    
-  
-    border-radius: 10px;
-    position: absolute;
-    top: 550px;
-    left: 200px;
-    width: 200px;
-    height: 200px;
-    p1 {
-      font-size: 4vw;
-      font-weight: 850;
-    }
-  }
-  
-  .mini_card_2 {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    background-color: peachpuff;
-    text-align: center;
-    font-size: 20px;
-    color: rgb(158, 113, 84);
-  
-    border-radius: 10px;
-    position: absolute;
-    top: 550px;
-    left: 500px;
-    width: 200px;
-    height: 200px;
-    p1 {
-      font-size: 4vw;
-      font-weight: 850;
-    }
-  }
-  
-  img {
-    border-radius: 5px 5px 0 0;
-  }
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-  
-  .container {
-    padding: 2px 16px;
-  }
+  position: absolute;
+  font-weight: 1000;
+  top: 2.5vw;
+  margin-left: 12vw;
+  color: rgb(158, 113, 84);
+  font-size: 1.5vw;
+}
+
+/* main big card */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 10px;
+  position: absolute;
+  margin-top: 150px;  
+  left: 4vw;
+  width: 40vw;
+  height: 40vw;
+  background-color: white;
+  z-index: 2;               /* to make on top of background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card img {
+  display: block;
+  height: 55%;
+  width: 55%;
+  margin: auto;
+  margin-top: 1vw;
+  text-align: center;
+  max-width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+
+/* hover effect for card */
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* small card base to be reused*/
+.mini_card_1,
+.mini_card_2 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  background-color: peachpuff;
+  text-align: center;
+  font-size: 20px;
+  color: rgb(158, 113, 84);
+  border-radius: 15px;
+  position: absolute;
+  width: 12vw;
+  height: 12vw;
+  margin-left:1vw;
+  z-index: 3; /* make above the main card */
+}
+
+.mini_card_1 {
+  top: 34vw;
+  left: 10vw;
+}
+
+.mini_card_2 {
+  top: 34vw;
+  left: 24vw;
+}
+
+/* text inside the mini cards */
+.mini_card_1 h3,
+.mini_card_2 h3 {
+  margin-top: 20px;
+  font-size: 1.5em;
+}
+
+.stat {
+  font-size: 4vw;
+  font-weight: 850;
+  margin-top: 10px;
+}
+
+/* Not SUre yet */
+/* .container { */
+  /* padding: 2px 16px; */
+/* } */
