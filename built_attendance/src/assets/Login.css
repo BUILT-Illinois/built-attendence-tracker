@@ -1,0 +1,31 @@
+.attendance-container {
+    background-image: url('../../public/Login.png');
+    color: #755341;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.core {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.butt {
+    color: #95644B;
+    padding: 2vw;
+    width: 15vw;
+    border-radius: 50px;  
+    background-color: white;
+    border-color: #95644B;
+}
+.butt:hover {
+    cursor: pointer;
+}
+
+h1 {
+    font-family: 'Plus Jakarta Sans';
+}
