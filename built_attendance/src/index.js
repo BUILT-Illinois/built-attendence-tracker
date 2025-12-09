@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import Attendance from './pages/Events';
 import Leaderboard from './pages/leaderboard';
 import Header from './components/Header';
+import CheckIn from './pages/CheckIn';
 
 const root = document.getElementById("root");
 
@@ -21,6 +22,7 @@ ReactDOM.createRoot(root).render(
       {/* <Route path="attendance" element={<Attendance/>}/> */}
       <Route path='leaderboard' element={<Leaderboard/>}/>
       <Route path='events' element={<Events/>}/>
+      <Route path='checkin' element={<CheckIn/>}/>
       
     </Routes>
   </BrowserRouter>,

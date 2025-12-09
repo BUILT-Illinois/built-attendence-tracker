@@ -14,7 +14,9 @@ function Header () {
                 <Link to="/events">
                     <h2 className='header-button'>Events</h2>
                 </Link>
-                <h2 className='header-button'>Check-In</h2>
+                <Link to='/checkin'>
+                    <h2 className='header-button'>Check-In</h2>
+                </Link>
                 
                 <div>
                     {/* <img/> */}

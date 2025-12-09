@@ -6,9 +6,11 @@ import UpcomingEvents from './components/UpcomingEvents';
 function App() {
   return (
     <div>
-      <div>
-        <UpcomingEvents/>
-        { <Welcome/> }
+      <div className='column'>
+        <Welcome/>
+        <UpcomingEvents
+        eventName="Upcoming Events"
+      />
       </div>
     </div>
   );
