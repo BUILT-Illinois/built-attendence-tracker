@@ -4,9 +4,6 @@ import "../assets/leaderboard.css";
 function Leaderboard() {
     return (
         <div>
-                <h1>
-                    Leaderboard
-                </h1>
 
             <div className="main_box">
                 <div className="upper_half_bar">
@@ -34,7 +31,7 @@ function Leaderboard() {
                     </div>
                 </div>
             </div>
-        <LeaderboardPlayer />
+        {/* <LeaderboardPlayer /> */}
 
 
 
