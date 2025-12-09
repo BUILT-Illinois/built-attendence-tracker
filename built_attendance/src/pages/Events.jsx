@@ -2,9 +2,14 @@ import UpcomingEvents from "../components/UpcomingEvents";
 
 function Events () {
     return(
-        <div>
-            <UpcomingEvents/>
-        </div>
+    <div className="events-columns">
+      <UpcomingEvents
+        eventName="Upcoming Events"
+      />
+      <UpcomingEvents
+        eventName="Past Events"
+      />
+    </div>
     );
 }
 

@@ -9,11 +9,12 @@ const events = [
   { title: "October GBM", date: "10/7", points: "1 pt" },
 ];
 //Upcoming Events Component
-function UpcomingEvents() {
+
+function UpcomingEvents({eventName}) {
   return (
     <section className="events">
       <h1 className="events__title" id="events-title">
-        Upcoming Events
+        {eventName}
       </h1>
 
       <div className="events__card" role="region" aria-labelledby="events-title">
