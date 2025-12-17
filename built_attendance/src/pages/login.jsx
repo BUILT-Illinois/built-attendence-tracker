@@ -9,7 +9,7 @@ function Login() {
 
                 <img src="https://built-illinois.org/built-logo.png"/>
 
-                <button className="butt">
+                <button className="butt" onClick={() => window.location = '/home'}>
                     Login &rarr;
                 </button>
             </div>

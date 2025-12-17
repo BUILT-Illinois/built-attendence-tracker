@@ -5,6 +5,8 @@ function Leaderboard() {
     return (
         <div>
 
+            <h1>Leaderboard</h1>
+
             <div className="main_box">
                 <div className="upper_half_bar">
                     <div className="upper_bar_1">

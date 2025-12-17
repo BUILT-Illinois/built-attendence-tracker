@@ -17,8 +17,8 @@ ReactDOM.createRoot(root).render(
   <BrowserRouter>
     <Header/>
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="login" element={<Login/>}/>
+      <Route path="/" element={<Login />} />
+      <Route path="/home" element={<App/>}/>
       {/* <Route path="attendance" element={<Attendance/>}/> */}
       <Route path='leaderboard' element={<Leaderboard/>}/>
       <Route path='events' element={<Events/>}/>

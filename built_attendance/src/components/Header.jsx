@@ -1,11 +1,19 @@
 import '../assets/Header.css';
 import { Link } from 'react-router';
+import {useLocation} from 'react-router';
 
 function Header () {
+    const location = useLocation();
+
+    if (location.pathname === '/') {
+        return null;
+    }
+    
+    
     return(
         <div className='header'>
             <div className='container'>
-                <Link className='' to="/">
+                <Link className='' to="/home">
                     <img className='built-img' src='https://built-illinois.org/built-logo.png'/>
                 </Link>
                 <Link to="/leaderboard">

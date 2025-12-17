@@ -8,9 +8,7 @@ function App() {
     <div>
       <div className='column'>
         <Welcome/>
-        <UpcomingEvents
-        eventName="Upcoming Events"
-      />
+        <UpcomingEvents eventName="Upcoming Events"/>
       </div>
     </div>
   );
