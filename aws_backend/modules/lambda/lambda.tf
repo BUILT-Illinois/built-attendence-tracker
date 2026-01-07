@@ -7,7 +7,7 @@ data "archive_file" "lambda" {
 resource "aws_lambda_function" "api_lambda" {
   function_name = "attendance-api-routing"
   role          = var.lambda_role_arn
-  handler       = "main.lambda_handler"
+  handler       = "handler.lambda_handler"
   runtime       = "python3.12"
 
   filename         = "${path.module}/../../src/lambda_api.zip"
