@@ -5,6 +5,14 @@
 *.tfstate
 *.tfstate.*
 
+# Lambda build artifacts
+*.zip
+
+# Dependencies
+src/dependencies/
+src/dependencies/dns/
+
+
 # Crash log files
 crash.log
 crash.*.log
