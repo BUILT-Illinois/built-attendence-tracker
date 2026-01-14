@@ -1,4 +1,9 @@
 import json
+import os, sys
+
+# Only needed if you're keeping deps in src/dependencies
+sys.path.append(os.path.join(os.path.dirname(__file__), "dependencies"))
+
 from routes.events import list_events, get_event, delete_event
 
 def response(status, body):
@@ -8,9 +13,24 @@ def response(status, body):
         "body": json.dumps(body, default=str),
     }
 
+def get_method_and_path(event):
+    # REST API (v1)
+    method = event.get("httpMethod")
+    path = event.get("path")
+
+    # HTTP API (v2)
+    if not method:
+        method = event.get("requestContext", {}).get("http", {}).get("method")
+    if not path:
+        path = event.get("rawPath")
+
+    return (method or ""), (path or "")
+
 def lambda_handler(event, context):
-    path = event.get("path", "")
-    method = event.get("httpMethod", "")
+    method, path = get_method_and_path(event)
+
+    # Optional: debug once if you're still getting 404s
+    # print("method:", method, "path:", path)
 
     # Example routing for events
     if path == "/events" and method == "GET":

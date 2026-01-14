@@ -2,7 +2,8 @@ from bson.objectid import ObjectId
 
 # function to find a specific user by id
 def find_one_user(user_id):
-    _id = ObjectId(event_id)
+    _id = ObjectId(user_id)
+    
 
     result = user_collection.find({"_id": _id})
 

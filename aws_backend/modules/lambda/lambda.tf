@@ -15,5 +15,10 @@ resource "aws_lambda_function" "api_lambda" {
 
   timeout     = 10
   memory_size = 128
-  
+
+  environment {
+    variables = {
+      ATLAS_URI = var.mongo_uri
+    }
+  } 
 }
