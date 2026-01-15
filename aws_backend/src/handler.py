@@ -5,7 +5,7 @@ import os, sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "dependencies"))
 
 from routes.events import list_events, get_event, delete_event, create_event, update_event
-from routes.user import list_users, get_user, delete_user, create_user
+from routes.user import list_users, get_user, delete_user, create_user, update_user
 
 def response(status, body):
     return {
@@ -78,6 +78,10 @@ def lambda_handler(event, context):
             return response(status, body)
         if method == "DELETE":
             status, body = delete_user(user_id)
+            return response(status, body)
+        if method == "PATCH":
+            data = parse_json_body(event)
+            status, body = update_user(user_id, data)
             return response(status, body)
 
     return response(404, {"error": "Not found"})

@@ -1,4 +1,5 @@
 from bson.objectid import ObjectId
+from bson.errors import InvalidId
 from db import collections
 from pymongo.errors import DuplicateKeyError
 
@@ -63,3 +64,59 @@ def delete_user(user_id: str):
     if result.deleted_count == 0:
         return 404, {"error": "Event not found"}
     return 200, {"ok": True}
+
+def update_user(user_id: str, data: dict):
+    # Validate ObjectId
+    try:
+        _id = ObjectId(user_id)
+    except (InvalidId, TypeError):
+        return 400, {"error": "Invalid user_id"}
+
+    if not isinstance(data, dict) or not data:
+        return 400, {"error": "Missing update data"}
+
+    # Whitelist fields you allow updates for
+    allowed = {"admin", "img", "points", "position"}
+
+    update_fields = {}
+    for key in allowed:
+        if key in data:
+            update_fields[key] = data[key]
+
+    if not update_fields:
+        return 400, {"error": "No valid fields to update"}
+
+    # Coerce types to satisfy your schema
+    try:
+        if "admin" in update_fields:
+            # JSON will usually send true/false (bool), but handle strings too
+            val = update_fields["admin"]
+            if isinstance(val, bool):
+                update_fields["admin"] = val
+            elif isinstance(val, str) and val.strip().lower() in ("true", "false"):
+                update_fields["admin"] = val.strip().lower() == "true"
+            else:
+                return 400, {"error": "admin must be a boolean"}
+
+        if "img" in update_fields:
+            update_fields["img"] = str(update_fields["img"]).strip()
+
+        if "points" in update_fields:
+            update_fields["points"] = int(update_fields["points"])
+            if update_fields["points"] < 0:
+                return 400, {"error": "points must be >= 0"}
+
+        if "position" in update_fields:
+            update_fields["position"] = str(update_fields["position"]).strip()
+
+    except (ValueError, TypeError) as e:
+        return 400, {"error": str(e)}
+
+    col = collections()["users"]
+    result = col.update_one({"_id": _id}, {"$set": update_fields})
+
+    if result.matched_count == 0:
+        return 404, {"error": "User not found"}
+
+    updated = col.find_one({"_id": _id})
+    return 200, {"ok": True, "user": updated}
