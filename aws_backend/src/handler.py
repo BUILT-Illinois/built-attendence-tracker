@@ -5,7 +5,7 @@ import os, sys
 sys.path.append(os.path.join(os.path.dirname(__file__), "dependencies"))
 
 from routes.events import list_events, get_event, delete_event, create_event
-from routes.user import list_users, get_user, delete_user
+from routes.user import list_users, get_user, delete_user, create_user
 
 def response(status, body):
     return {
@@ -51,6 +51,11 @@ def lambda_handler(event, context):
     
     if path == "/users" and method == "GET":
         status, body = list_users()
+        return response(status, body)
+    
+    if path == "/users/login" and method == "POST":
+        data = parse_json_body(event)
+        status, body = create_user(data)
         return response(status, body)
 
     if path.startswith("/events/"):
