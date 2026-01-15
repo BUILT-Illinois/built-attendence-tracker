@@ -4,7 +4,7 @@ import os, sys
 # Only needed if you're keeping deps in src/dependencies
 sys.path.append(os.path.join(os.path.dirname(__file__), "dependencies"))
 
-from routes.events import list_events, get_event, delete_event, create_event
+from routes.events import list_events, get_event, delete_event, create_event, update_event
 from routes.user import list_users, get_user, delete_user, create_user
 
 def response(status, body):
@@ -65,6 +65,10 @@ def lambda_handler(event, context):
             return response(status, body)
         if method == "DELETE":
             status, body = delete_event(event_id)
+            return response(status, body)
+        if method == "PATCH":
+            data = parse_json_body(event)
+            status, body = update_event(event_id, data)
             return response(status, body)
     
     if path.startswith("/users/"):

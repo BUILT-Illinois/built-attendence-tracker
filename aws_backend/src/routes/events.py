@@ -1,5 +1,6 @@
 import json
 from bson.objectid import ObjectId
+from bson.errors import InvalidId
 from db import collections
 from datetime import datetime
 
@@ -51,3 +52,60 @@ def create_event(data : dict):
     result = col.insert_one(doc)
 
     return 201, {"ok": True, "event_id": str(result.inserted_id)}
+
+def update_event(event_id: str, data: dict):
+    # Validate ObjectId
+    try:
+        _id = ObjectId(event_id)
+    except (InvalidId, TypeError):
+        return 400, {"error": "Invalid event_id"}
+
+    if not isinstance(data, dict) or not data:
+        return 400, {"error": "Missing update data"}
+
+    # Whitelist fields you allow updates for
+    allowed = {"name", "location", "date", "points", "leads", "sponsor"}
+
+    update_fields = {}
+    for key in allowed:
+        if key in data:
+            update_fields[key] = data[key]
+
+    if not update_fields:
+        return 400, {"error": "No valid fields to update"}
+
+    # Type coercion to satisfy your Mongo validators
+    try:
+        if "name" in update_fields:
+            update_fields["name"] = str(update_fields["name"]).strip()
+
+        if "location" in update_fields:
+            update_fields["location"] = str(update_fields["location"]).strip()
+
+        if "sponsor" in update_fields:
+            update_fields["sponsor"] = str(update_fields["sponsor"]).strip()
+
+        if "points" in update_fields:
+            update_fields["points"] = int(update_fields["points"])
+
+        if "date" in update_fields:
+            update_fields["date"] = _parse_date(update_fields["date"])
+
+        if "leads" in update_fields:
+            # Expect list of strings, match your schema
+            leads = update_fields["leads"]
+            if not isinstance(leads, list):
+                return 400, {"error": "leads must be an array of strings"}
+            update_fields["leads"] = [str(x).strip() for x in leads if str(x).strip()]
+    except (ValueError, TypeError) as e:
+        return 400, {"error": str(e)}
+
+    col = collections()["events"]
+    result = col.update_one({"_id": _id}, {"$set": update_fields})
+
+    if result.matched_count == 0:
+        return 404, {"error": "Event not found"}
+
+    # Return the updated doc (nice for frontend)
+    updated = col.find_one({"_id": _id})
+    return 200, {"ok": True, "event": updated}
