@@ -1,9 +1,24 @@
 import '../assets/Header.css';
 import { Link } from 'react-router';
 import {useLocation} from 'react-router';
+import { getAuth, signOut } from 'firebase/auth';
 
 function Header () {
     const location = useLocation();
+    const auth = getAuth();
+    
+
+    const SignOut = async () => {
+        try {
+            const result = await signOut(auth);
+            window.location = '/';
+        }
+        catch (error) {
+
+        }
+    }
+    
+
 
     if (location.pathname === '/') {
         return null;
@@ -27,9 +42,9 @@ function Header () {
                 </Link>
                 
                 <div>
-                    {/* <img/> */}
-                    <h2>Name</h2>
-                    <h2>Logout</h2>
+                    <img src ={localStorage.getItem("profile")}/>
+                    <h2>{localStorage.getItem("user")}</h2>
+                    <h2 onClick={SignOut}>Logout</h2>
                 </div>
             </div>
         </div>
