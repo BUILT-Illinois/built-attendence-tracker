@@ -7,7 +7,7 @@ data "archive_file" "lambda" {
 resource "aws_lambda_function" "api_lambda" {
   function_name = "attendance-api-routing"
   role          = var.lambda_role_arn
-  handler       = "main.lambda_handler"
+  handler       = "handler.lambda_handler"
   runtime       = "python3.12"
 
   filename         = "${path.module}/../../src/lambda_api.zip"
@@ -15,5 +15,10 @@ resource "aws_lambda_function" "api_lambda" {
 
   timeout     = 10
   memory_size = 128
-  
+
+  environment {
+    variables = {
+      ATLAS_URI = var.mongo_uri
+    }
+  } 
 }

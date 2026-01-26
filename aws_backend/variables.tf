@@ -1,7 +1,3 @@
-variable "lambda_role_arn" {
-  type = string
-}
-
 variable "mongo_uri" {
   type = string
   sensitive = true
