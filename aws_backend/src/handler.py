@@ -6,6 +6,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "dependencies"))
 
 from routes.events import list_events, get_event, delete_event, create_event, update_event
 from routes.user import list_users, get_user, delete_user, create_user, update_user
+from routes.checkins import create_checkin
 
 def response(status, body):
     return {
@@ -65,6 +66,11 @@ def lambda_handler(event, context):
         data = parse_json_body(event)
         status, body = create_user(data)
         return response(status, body)
+    
+    if path == '/checkins' and method == "POST":
+        data = parse_json_body(event)
+        status, body = create_checkin(data)
+        return response(status, body)
 
     if path.startswith("/events/"):
         event_id = path.split("/events/")[1]
@@ -91,5 +97,6 @@ def lambda_handler(event, context):
             data = parse_json_body(event)
             status, body = update_user(user_id, data)
             return response(status, body)
+            
 
     return response(404, {"error": "Not found"})
