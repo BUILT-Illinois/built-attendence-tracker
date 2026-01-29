@@ -3,7 +3,10 @@ resource "aws_apigatewayv2_api" "attendance_tracker_api" {
     protocol_type = "HTTP"
 
     cors_configuration {
-        allow_origins = ["http://localhost:3000"]
+        allow_origins = [
+            "http://localhost:3000", 
+            "https://built-attendence-tracker.vercel.app"
+        ]
         allow_methods = ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"]
         allow_headers = ["content-type", "authorization"]
         max_age = 86400
