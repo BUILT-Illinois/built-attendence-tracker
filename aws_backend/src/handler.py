@@ -4,7 +4,8 @@ import os, sys
 # Only needed if you're keeping deps in src/dependencies
 sys.path.append(os.path.join(os.path.dirname(__file__), "dependencies"))
 
-from routes.events import list_events, get_event, delete_event
+from routes.events import list_events, get_event, delete_event, create_event, update_event
+from routes.user import list_users, get_user, delete_user, create_user, update_user
 
 def response(status, body):
     return {
@@ -26,15 +27,35 @@ def get_method_and_path(event):
 
     return (method or ""), (path or "")
 
+def parse_json_body(event):
+    body = event.get("body")
+    if not body:
+        return {}
+    if event.get("isBase64Encoded"):
+        import base64
+        body = base64.b64decode(body).decode("utf-8")
+    return json.loads(body)
+
 def lambda_handler(event, context):
     method, path = get_method_and_path(event)
 
-    # Optional: debug once if you're still getting 404s
-    # print("method:", method, "path:", path)
-
-    # Example routing for events
+    # Routing for events
     if path == "/events" and method == "GET":
         status, body = list_events()
+        return response(status, body)
+    
+    if path == "/events" and method == "POST":
+        data = parse_json_body(event)
+        status, body = create_event(data)
+        return response(status, body)
+    
+    if path == "/users" and method == "GET":
+        status, body = list_users()
+        return response(status, body)
+    
+    if path == "/users/login" and method == "POST":
+        data = parse_json_body(event)
+        status, body = create_user(data)
         return response(status, body)
 
     if path.startswith("/events/"):
@@ -44,6 +65,23 @@ def lambda_handler(event, context):
             return response(status, body)
         if method == "DELETE":
             status, body = delete_event(event_id)
+            return response(status, body)
+        if method == "PATCH":
+            data = parse_json_body(event)
+            status, body = update_event(event_id, data)
+            return response(status, body)
+    
+    if path.startswith("/users/"):
+        user_id = path.split("/users/")[1]
+        if method == "GET":
+            status, body = get_user(user_id)
+            return response(status, body)
+        if method == "DELETE":
+            status, body = delete_user(user_id)
+            return response(status, body)
+        if method == "PATCH":
+            data = parse_json_body(event)
+            status, body = update_user(user_id, data)
             return response(status, body)
 
     return response(404, {"error": "Not found"})

@@ -1,0 +1,95 @@
+// Test Events
+###
+GET https://ehmfyqs8z4.execute-api.us-east-1.amazonaws.com/events
+
+###
+GET https://ehmfyqs8z4.execute-api.us-east-1.amazonaws.com/events/69680b8d447b1b470655558a
+
+###
+DELETE https://ehmfyqs8z4.execute-api.us-east-1.amazonaws.com/events/6967c2b0795867fa3fbcc29c
+
+###
+GET https://ehmfyqs8z4.execute-api.us-east-1.amazonaws.com/users
+
+
+###
+GET https://mp3-bjnw.onrender.com/api/tasks?where={"completed": true}
+
+// Sort in reverse order by name
+###
+GET https://mp3-bjnw.onrender.com/api/users?sort={"name": -1}
+
+###
+GET https://mp3-bjnw.onrender.com/api/users?sort={"name": 1}
+
+###
+GET https://mp3-bjnw.onrender.com/api/tasks?skip=60&limit=20
+
+
+// Error in adding user
+###
+POST https://mp3-bjnw.onrender.com/api/users
+Content-Type: application/json
+
+{
+  "name": "Alice",
+  "email": "alice@example.com",
+  "pendingTasks": []
+}
+
+// Error Code is not 400 for invalid user add request, needs username
+###
+POST https://mp3-bjnw.onrender.com/api/users
+Content-Type: application/json
+
+{
+  "email": "alice@example.com",
+  "pendingTasks": []
+}
+
+
+// Error Code is not 400 for invalid task add request (received 429)
+###
+POST https://mp3-bjnw.onrender.com/api/tasks
+Content-Type: application/json
+
+{
+  "name": "Help Out",
+  "description": "Assist with project tasks",
+  # "deadline": "2023-12-31T23:59:59.000Z"
+}
+
+
+###
+POST https://mp3-bjnw.onrender.com/api/tasks
+Content-Type: application/json
+
+{
+  "name": "Test Task",
+  "description": "Check references",
+  "deadline": "2030-01-01T00:00:00.000Z",
+  "completed": false,
+  "assignedUser": "",
+  "assignedUserName": "unassigned"
+}
+
+
+###
+GET https://mp3-bjnw.onrender.com/api/tasks
+
+###
+PUT https://mp3-bjnw.onrender.com/api/tasks/690a66fe60ea445d68fb2671
+Content-Type: application/json
+
+{
+  "assignedUser": "690ae51e617e6849484ae23a",
+  "assignedUserName": "Alice"
+}
+
+###
+# GET http://localhost:3000/api/tasks
+GET http://localhost:3000/api/users
+
+###
+# DELETE http://localhost:3000/api/tasks/690ae36e617e6849484ae214
+DELETE http://mp3-bjnw.onrender.com/api/users/6923908b4d7d5d003e2e9cb3
