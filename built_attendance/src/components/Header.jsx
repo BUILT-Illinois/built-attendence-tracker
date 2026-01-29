@@ -7,7 +7,6 @@ function Header () {
     const location = useLocation();
     const auth = getAuth();
     
-
     const SignOut = async () => {
         try {
             const result = await signOut(auth);
@@ -18,8 +17,6 @@ function Header () {
         }
     }
     
-
-
     if (location.pathname === '/') {
         return null;
     }

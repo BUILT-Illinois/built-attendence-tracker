@@ -1,7 +1,23 @@
 import Header from "../components/Header";
 import LeaderboardPlayer from "../components/LeaderboardPlayer";
+import { useEffect, useState } from "react";
+import { listUsers } from '../api/users';
 import "../assets/leaderboard.css";
 function Leaderboard() {
+    const [users, setUsers] = useState([]);
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const data = await listUsers();
+                setUsers(data);
+            } catch (e) {
+                setError(e?.response?.data?.error || e.message);
+            }
+        })();
+    }, []);
+    
     return (
         <div>
 
@@ -20,18 +36,20 @@ function Leaderboard() {
                         Points
                     </div>
                 </div>
-                <div className="lower_half_bar">
-                    Your Rank
-                    <div className="lower_bar_1">
-                        #3
+                
+                {users
+                ?.slice()
+                .sort((a, b) => b.points - a.points)
+                .map((u, i) => (
+                    <div className="lower_half_bar" key={u._id || i}>
+                    <div className="lower_bar_1">#{i + 1}</div>
+                    <div className="lower_bar_2">{u.name}</div>
+                    <div className="lower_bar_3">{u.points}</div>
                     </div>
-                    <div className="lower_bar_2">
-                        Felix Romero
-                    </div>
-                    <div className="lower_bar_3">
-                        28
-                    </div>
-                </div>
+                ))}
+                
+
+
             </div>
         {/* <LeaderboardPlayer /> */}
 

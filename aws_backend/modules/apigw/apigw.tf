@@ -1,6 +1,13 @@
 resource "aws_apigatewayv2_api" "attendance_tracker_api" {
     name = var.api_name
     protocol_type = "HTTP"
+
+    cors_configuration {
+        allow_origins = ["http://localhost:3000"]
+        allow_methods = ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"]
+        allow_headers = ["content-type", "authorization"]
+        max_age = 86400
+    }
 }
 
 resource "aws_apigatewayv2_stage" "lambda_stage" {

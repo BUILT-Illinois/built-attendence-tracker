@@ -10,7 +10,12 @@ from routes.user import list_users, get_user, delete_user, create_user, update_u
 def response(status, body):
     return {
         "statusCode": status,
-        "headers": {"content-type": "application/json"},
+        "headers": {
+            "content-type": "application/json",
+            "access-control-allow-origin": "http://localhost:3000",
+            "access-control-allow-headers": "content-type,authorization",
+            "access-control-allow-methods": "GET,POST,PATCH,PUT,DELETE,OPTIONS",
+        },
         "body": json.dumps(body, default=str),
     }
 
@@ -38,6 +43,9 @@ def parse_json_body(event):
 
 def lambda_handler(event, context):
     method, path = get_method_and_path(event)
+
+    if method == "OPTIONS":
+        return response(200, {"ok": True})
 
     # Routing for events
     if path == "/events" and method == "GET":

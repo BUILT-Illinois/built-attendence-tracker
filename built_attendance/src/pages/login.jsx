@@ -1,6 +1,7 @@
 import "../assets/Login.css"
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../firebaseConfig";
+import { loginSyncUser } from "../api/users";
 
 function Login() {
     const loginWithGoogle = async () => {
@@ -11,6 +12,17 @@ function Login() {
             
             localStorage.setItem("user", user.displayName);
             localStorage.setItem("profile", profilePic);
+
+            const backendUser = await loginSyncUser({
+                email: user.email,
+                name: user.displayName,
+                img: user.photoURL,
+            });
+
+            localStorage.setItem("user_id", backendUser.user_id);
+            localStorage.setItem("admin", String(backendUser.admin));
+            localStorage.setItem("points", String(backendUser.points || 0));
+            localStorage.setItem("position", backendUser.position || "Member");
 
             // alert(`Welcome ${user.displayName}`)
             window.location = '/home';
