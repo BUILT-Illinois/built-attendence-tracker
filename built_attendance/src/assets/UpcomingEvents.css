@@ -80,8 +80,6 @@
 /* Title emphasis */
 .events__cell--title{
   font-weight: 800;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* Points emphasis */
@@ -102,4 +100,90 @@
   .events__cell{
     font-size: 16px;
   }
+}
+
+
+.events__cell--edit{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* small edit pencil button */
+.events__iconBtn{
+  background: transparent;
+  border: 2px solid rgba(0,0,0,0.85);
+  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 900;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.events__iconBtn:hover{
+  background: rgba(0,0,0,0.05);
+}
+
+/* inputs for inline edit */
+.events__input{
+  width: 100%;
+  max-width: 220px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 2px solid rgba(0,0,0,0.15);
+  background: white;
+  font-weight: 700;
+}
+
+.events__input--pts{
+  max-width: 80px;
+  text-align: center;
+}
+
+/* edit action buttons */
+.events__editActions{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.events__actionBtn{
+  background: #B57757;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.events__actionBtn:hover{
+  opacity: 0.9;
+}
+
+.events__actionBtn:disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.events__actionBtn--ghost{
+  background: rgba(0,0,0,0.08);
+  color: rgba(0,0,0,0.85);
+}
+
+.events__actionBtn--danger{
+  background: #b00020;
+}
+
+/* optional error */
+.events__error{
+  padding: 10px 12px;
+  color: #b00020;
+  font-weight: 800;
 }

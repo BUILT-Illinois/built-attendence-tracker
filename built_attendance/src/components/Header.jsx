@@ -13,6 +13,7 @@ function Header() {
   const fullName = localStorage.getItem("user") || "";
   const firstName = fullName.trim().split(/\s+/)[0] || "Name";
   const profilePic = localStorage.getItem("profile");
+  const isAdmin = localStorage.getItem("admin") === "true";
 
   const SignOut = async () => {
     try {
@@ -81,6 +82,16 @@ function Header() {
 
           {open && (
             <div className="user-dropdown" role="menu">
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  className="dropdown-item"
+                  onClick={() => setOpen(false)}
+                >
+                    Admin
+                </Link>
+              )}
+              
               <button className="logout-btn" role="menuitem" onClick={SignOut}>
                 Logout
               </button>

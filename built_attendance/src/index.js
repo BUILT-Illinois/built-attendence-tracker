@@ -6,10 +6,10 @@ import App from './App';
 import Login from './pages/login';
 import Events from './pages/Events';
 import reportWebVitals from './reportWebVitals';
-import Attendance from './pages/Events';
 import Leaderboard from './pages/leaderboard';
 import Header from './components/Header';
 import CheckIn from './pages/CheckIn';
+import Admin from './pages/Admin';
 
 const root = document.getElementById("root");
 
@@ -23,6 +23,7 @@ ReactDOM.createRoot(root).render(
       <Route path='leaderboard' element={<Leaderboard/>}/>
       <Route path='events' element={<Events/>}/>
       <Route path='checkin' element={<CheckIn/>}/>
+      <Route path='admin' element={<Admin/>}/>
       
     </Routes>
   </BrowserRouter>,
