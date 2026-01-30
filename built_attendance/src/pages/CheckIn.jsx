@@ -38,13 +38,13 @@ export default function CheckIn() {
         <h1>Event ID:</h1>
         <input
           className="text-box"
-          placeholder="Paste event id"
+          placeholder="(Paste event id)"
           value={eventId}
           onChange={(e) => setEventId(e.target.value)}
         />
       </div>
 
-      <button onClick={onSubmit} disabled={loading}>
+      <button className="checkin-button" onClick={onSubmit} disabled={loading}>
         {loading ? "Submitting..." : "Submit"}
       </button>
 

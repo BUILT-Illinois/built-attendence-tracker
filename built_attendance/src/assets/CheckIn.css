@@ -1,15 +1,30 @@
-.checkin-box {
-    border-color: black;
-    width: 50vw;
-    margin: auto;
-    background-color: #FFF7F2;
-    border-style: solid;
-    border-radius: 5px;
-}
-
 .checkin {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.checkin-box {
+    border-color: transparent;
+    box-shadow: 0 6px 20px rgba(0,0,0,.06);
+    width: 50vw;
+    margin: auto;
+    background-color: #FFF7F2;
+    border-style: solid;
+    border-radius: 5px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 200px;
+}
+
+.checkin-button {
+    width: 15vw;
+    padding: 2vw;
+    font-weight: bold;
+    font-size: 1.5vw;
+    margin-top: 2vw;
 }

@@ -1,5 +1,3 @@
-import Header from "../components/Header";
-import LeaderboardPlayer from "../components/LeaderboardPlayer";
 import { useEffect, useMemo, useState } from "react";
 import { listUsers } from "../api/users";
 import "../assets/leaderboard.css";
