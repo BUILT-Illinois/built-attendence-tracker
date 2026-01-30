@@ -11,6 +11,7 @@ import Header from './components/Header';
 import CheckIn from './pages/CheckIn';
 import Admin from './pages/Admin';
 import CreateEvent from './pages/CreateEvent';
+import AdminRoute from './components/AdminRoute';
 
 const root = document.getElementById("root");
 
@@ -24,8 +25,16 @@ ReactDOM.createRoot(root).render(
       <Route path='leaderboard' element={<Leaderboard/>}/>
       <Route path='events' element={<Events/>}/>
       <Route path='checkin' element={<CheckIn/>}/>
-      <Route path='admin' element={<Admin/>}/>
-      <Route path='create' element={<CreateEvent/>}/>
+      <Route path='admin' element={
+                          <AdminRoute>
+                            <Admin/>
+                          </AdminRoute>
+      }/>
+      <Route path='create' element={
+                      <AdminRoute>
+                        <CreateEvent/>
+                      </AdminRoute>
+      }/>
       
     </Routes>
   </BrowserRouter>,

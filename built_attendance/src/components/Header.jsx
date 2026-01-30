@@ -85,14 +85,19 @@ function Header() {
               {isAdmin && (
                 <Link
                   to="/admin"
-                  className="dropdown-item"
+                  className="logout-btn"
+                  role="menuitem"
                   onClick={() => setOpen(false)}
                 >
-                    Admin
+                  Admin
                 </Link>
               )}
-              
-              <button className="logout-btn" role="menuitem" onClick={SignOut}>
+
+              <button
+                className="logout-btn"
+                role="menuitem"
+                onClick={SignOut}
+              >
                 Logout
               </button>
             </div>

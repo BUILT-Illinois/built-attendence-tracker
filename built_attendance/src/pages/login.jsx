@@ -19,13 +19,15 @@ function Login() {
                 img: user.photoURL,
             });
 
+            console.log("backendUser:", backendUser);
+
             localStorage.setItem("user_id", backendUser.user_id);
             localStorage.setItem("admin", String(backendUser.admin));
             localStorage.setItem("points", String(backendUser.points || 0));
             localStorage.setItem("position", backendUser.position || "Member");
 
             // alert(`Welcome ${user.displayName}`)
-            window.location = '/home';
+            window.location.href = '/home';
             
         } catch (error) {
             alert(error.message);
