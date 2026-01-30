@@ -11,7 +11,7 @@ function AdminUpcomingEvents({ eventName }) {
   const [draft, setDraft] = useState({ name: "", date: "", points: "" });
   const [saving, setSaving] = useState(false);
 
-  // ---- helpers to prevent NaN/NaN + NaN points right after save ----
+  // ---- helpers to prevent NaN/NaN + timezone date bugs right after save ----
   const toDate = (v) => {
     if (!v) return null;
     if (v instanceof Date) return v;
@@ -41,6 +41,7 @@ function AdminUpcomingEvents({ eventName }) {
     return Number.isFinite(n) ? n : fallback;
   };
 
+  // convert stored date value -> <input type="date"> value (YYYY-MM-DD) using LOCAL parts
   const toInputYYYYMMDD = (v) => {
     const d = toDate(v);
     if (!d) return "";
@@ -49,7 +50,16 @@ function AdminUpcomingEvents({ eventName }) {
     const dd = String(d.getDate()).padStart(2, "0");
     return `${yyyy}-${mm}-${dd}`;
   };
-  // ------------------------------------------------------------------
+
+  // convert YYYY-MM-DD from <input type="date"> to an ISO string that won't shift days in local time
+  // using local noon avoids timezone/DST edge cases
+  const ymdToLocalISOString = (ymd) => {
+    if (!ymd) return null;
+    const [y, m, d] = ymd.split("-").map(Number);
+    const localNoon = new Date(y, m - 1, d, 12, 0, 0);
+    return localNoon.toISOString();
+  };
+  // -------------------------------------------------------------------------
 
   useEffect(() => {
     (async () => {
@@ -64,7 +74,6 @@ function AdminUpcomingEvents({ eventName }) {
 
   const startEdit = (e) => {
     setEditingId(e._id);
-
     setDraft({
       name: e.name || "",
       date: toInputYYYYMMDD(e.date),
@@ -83,39 +92,41 @@ function AdminUpcomingEvents({ eventName }) {
       setSaving(true);
       setError("");
 
-      // grab current event to use as fallback values
       const current = events.find((ev) => String(ev._id) === String(eventId));
 
       const patch = {
         name: draft.name,
         points: toNumberOr(draft.points, current?.points ?? 0),
-        // keep existing date if draft.date empty
         date: draft.date
-          ? new Date(draft.date).toISOString()
+          ? ymdToLocalISOString(draft.date)
           : (toDate(current?.date)?.toISOString() || current?.date || null),
       };
 
       const updated = await updateEvent(eventId, patch);
 
+      // Merge with existing event so we don't lose fields if backend returns partial
       setEvents((prev) =>
         prev.map((ev) => {
-            if (String(ev._id) !== String(eventId)) return ev;
+          if (String(ev._id) !== String(eventId)) return ev;
 
-            // keep existing fields, apply patch + whatever backend returned
-            const merged = {
+          const merged = {
             ...ev,
             ...patch,
             ...updated,
-            };
+          };
 
-            return {
+          return {
             ...merged,
             name: merged.name ?? ev.name ?? patch.name,
-            points: toNumberOr(merged.points, toNumberOr(patch.points, ev.points || 0)),
+            points: toNumberOr(
+              merged.points,
+              toNumberOr(patch.points, ev.points || 0)
+            ),
+            // ensure we keep a consistent ISO string in state so fmtMD works immediately
             date: toDate(merged.date)?.toISOString() || patch.date || ev.date,
-            };
+          };
         })
-        );
+      );
 
       cancelEdit();
     } catch (e) {
