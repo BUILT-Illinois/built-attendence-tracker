@@ -1,50 +1,129 @@
+.leaderboard_title{
+    text-align: center;
+    color: #B57757;
+    font-size: 60px;
+    margin: 20px 0;
+    font-weight: 900;
+}
+
 .main_box{
     width: 70vw;
     background-color: #F4EFEF;
     margin: auto;
-    
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.Name_logo{
-    width: 2.5vw;
-}
-
+/* Header */
 .upper_half_bar{
     display: flex;
     color: white;
-    font-size: 2vw;
-    gap: 0.5vw;
+    font-size: 28px;
+    background-color: #E78B5B;
 }
 
+/* Columns */
 .upper_bar_1{
-    width: 10vw;
-    background-color: #E78B5B;
+    width: 15%;
+    padding: 18px;
+    border-right: 6px solid white;
 }
 
 .upper_bar_2{
-    width: 30vw;
-    background-color: #E78B5B;
-    
+    width: 60%;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-right: 6px solid white;
 }
 
 .upper_bar_3{
-    width: 50vw;
-    background-color: #E78B5B;  
+    width: 25%;
+    padding: 18px;
+    text-align: right;
 }
 
+/* Logo in header */
+.Name_logo{
+    width: 34px;
+    height: 34px;
+}
+
+/* Rows */
 .lower_half_bar{
     display: flex;
-    background-color: #9A4316;
-    color: white;    
+    background-color: #E9AA88;   /* same color for all rows */
+    color: white;
+    font-size: 26px;
+    font-weight: 900;
+    border-top: 4px solid rgba(255,255,255,0.45);
 }
 
+/* Highlight YOUR row only */
+.my_row{
+    background-color: #F09A73;
+}
+
+/* Row columns */
 .lower_bar_1{
-    width: 50vw;   
-}
-.lower_bar_2{
-    width: 50vw;   
-}
-.lower_bar_3{
-    width: 50vw;   
+    width: 15%;
+    padding: 18px;
 }
 
+.lower_bar_2{
+    width: 60%;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.lower_bar_3{
+    width: 25%;
+    padding: 18px;
+    text-align: right;
+}
+
+/* Profile picture circle */
+.pfp_circle{
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: white;
+}
+
+/* Your Rank section INSIDE component */
+.your_rank_section{
+    background-color: #B57757; /* different color like screenshot bar */
+    color: white;
+    margin-top: 10px;
+}
+
+.your_rank_label{
+    padding: 14px 18px;
+    font-size: 28px;
+    font-weight: 900;
+    border-top: 6px solid rgba(255,255,255,0.65);
+}
+
+/* The actual row inside the Your Rank section */
+.your_rank_row{
+    background-color: #B57757;
+    border-top: 4px solid rgba(255,255,255,0.35);
+}
+
+/* Empty state */
+.your_rank_empty{
+    padding: 18px;
+    font-size: 26px;
+    font-weight: 900;
+}
+
+/* Error */
+.leaderboard_error{
+    text-align: center;
+    color: red;
+    margin-top: 10px;
+}
