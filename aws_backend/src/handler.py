@@ -54,9 +54,13 @@ def lambda_handler(event, context):
         return response(status, body)
     
     if path == "/events" and method == "POST":
-        data = parse_json_body(event)
-        status, body = create_event(data)
-        return response(status, body)
+        try:
+            data = parse_json_body(event)
+            status, body = create_event(data)
+            return response(status, body)
+        except Exception as e:
+            return response(500, {"error": str(e)})
+
     
     if path == "/users" and method == "GET":
         status, body = list_users()

@@ -80,7 +80,6 @@ event_validator = {
             "leads": {
                 "bsonType": "array",
                 "description": "must be an array",
-                "minItems": 1,
                 "maxItems": 25,
                 "items": {
                     "bsonType": "string"
