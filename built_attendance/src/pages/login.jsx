@@ -19,7 +19,7 @@ function Login() {
                 img: user.photoURL,
             });
 
-            console.log("backendUser:", backendUser);
+            // console.log("backendUser:", backendUser);
 
             localStorage.setItem("user_id", backendUser.user_id);
             localStorage.setItem("admin", String(backendUser.admin));
