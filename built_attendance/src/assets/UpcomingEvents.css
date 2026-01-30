@@ -1,89 +1,104 @@
 :root{
-  --bg: #f4ede7;            /* soft beige page background */
-  --card: #faf6f2;          /* off-white card */
-  --text: #2b2b2b;          /* primary text */
-  --muted: #b28063;         /* warm brown for title */
-  --divider: #e7ddd6;       /* row borders */
+  --bg: #FFF7F2;
+  --text: #2b2b2b;
+  --muted: #B57757;
+  --divider: #e7ddd6;
   --radius-xl: 22px;
   --shadow: 0 6px 20px rgba(0,0,0,.06);
 }
-/* .events-page{
-  min-height: 100vh;
-  padding: clamp(24px, 6vw, 64px) 16px;
-  background: var(--bg);
-  display: grid;
-  place-items: start center;
-  color: var(--text);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-} */
+
 .events{
-  /* min-height: auto; */
-  padding: 0;
-  background: transparent;
-  display: block;           /* turn off the centering grid */
-  /* flex-direction: row;  */
-  color: inherit;
+  min-height: 100vh;
+  padding: 24px 0;
+  display: block;
+  justify-content: center;
+  color: var(--text);
 }
 
-.events-columns {
-  display: grid; 
-  grid-template-columns: repeat(2, minmax(0, 1fr)); /* two columns */
+/* NEW: centers title + card together */
+.events__wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* (optional, keep if used elsewhere) */
+.events-columns{
+  display: flex;
+  flex-wrap: wrap;
   gap: 32px;
-  align-items: start;
+  align-items: flex-start;
 }
 
+.events-columns > *{
+  flex: 1 1 0;
+  min-width: 320px;
+}
+
+/* Title centered relative to card */
 .events__title{
   margin: 0 0 12px;
   font-weight: 800;
   letter-spacing: 0.2px;
   font-size: clamp(28px, 5vw, 48px);
-  color: #a66a51; 
+  color: #a66a51;
   text-align: center;
+  max-width: 600px; /* keeps it aligned with card */
 }
 
 .events__card{
-  /* width: 100%; */
-  max-width: 600px; 
-  padding: 20px;    
-  margin: 20px;             
+  width: 35vw;
+  padding: 20px;
+  margin: 20px 0;
   border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  box-shadow: var(--shadow);
 }
 
-/* Each row uses a 3-column grid: title | date | points */
+/* Row layout */
 .events__row{
-  display: grid;
-  grid-template-columns: 1fr auto auto;
-  gap: 24px;
+  display: flex;
+  justify-content: space-evenly; /* evenly spaced columns */
   align-items: center;
   padding: 26px clamp(16px, 4vw, 36px);
   border-bottom: 1px solid var(--divider);
-  background: var(--card);
+}
+
+/* Column cells */
+.events__cell{
+  display: flex;
+  flex-direction: column;  /* text stacked */
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+
+  font-size: clamp(16px, 1.6vw, 22px);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Title emphasis */
+.events__cell--title{
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Points emphasis */
+.events__cell--pts{
+  font-weight: 800;
 }
 
 .events__row:last-child{
   border-bottom: 0;
 }
 
-.events__cell{
-  font-size: clamp(16px, 1.6vw, 22px);
-  font-weight: 700;
-}
-
-.events__cell--title{
-  font-weight: 800;
-}
-
-.events__cell--pts{
-  justify-self: end;
-}
-
-/* Small screens: keep it tidy */
+/* Mobile */
 @media (max-width: 420px){
   .events__row{
-    gap: 16px;
     padding: 22px 18px;
   }
+
   .events__cell{
     font-size: 16px;
   }

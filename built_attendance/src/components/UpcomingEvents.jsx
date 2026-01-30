@@ -35,21 +35,39 @@ function UpcomingEvents({eventName}) {
 
   return (
     <section className="events">
-      <h1 className="events__title" id="events-title">
-        {eventName}
-      </h1>
-
-      <div className="events__card" role="region" aria-labelledby="events-title">
-        {events.map((e, i) => (
-          <div className="events__row" key={`${e.name}-${i}`}>
-            <span className="events__cell events__cell--title">{e.name}</span>
-            <span className="events__cell">{e.date}</span>
-            <span className="events__cell events__cell--pts">{e.points}</span>
-          </div>
-        ))}
+      <div className="events__wrapper">
+        <h1 className="events__title" id="events-title">
+          {eventName}
+        </h1>
+  
+        <div
+          className="events__card"
+          role="region"
+          aria-labelledby="events-title"
+        >
+          {events.map((e, i) => (
+            <div className="events__row" key={`${e.name}-${i}`}>
+              <span className="events__cell events__cell--title">
+                {e.name}
+              </span>
+  
+              <span className="events__cell">
+                {(() => {
+                  const d = new Date(e.date);
+                  return `${d.getMonth() + 1}/${d.getDate()}`;
+                })()}
+              </span>
+  
+              <span className="events__cell events__cell--pts">
+                {e.points} pt
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
+  
 }
 
 export default UpcomingEvents;

@@ -31,26 +31,35 @@ function Welcome() {
   }, [users, myUserId]);
 
   return (
-    <div className="welcome-container">
-      <div className="welcome">
-        <h1>Welcome {localStorage.getItem("user")}</h1>
-      </div>
+    <section className="welcome-container">
+      <div className="welcome__wrapper">
+      <h1 className="welcome__title">
+        Welcome {localStorage.getItem("user")?.split(" ")[0]}
+      </h1>
 
-      <div className="card">
-        <img src="https://built-illinois.org/built-logo.png" alt="Logo" />
+  
+        <div className="welcome__card">
+          <div className="welcome__logo">
+            <img src="https://built-illinois.org/built-logo.png" alt="Logo" />
+          </div>
+  
+          <div className="welcome__stats">
+            <div className="welcome__mini">
+              <h3>Ranking</h3>
+              <p className="stat">{rank ? `#${rank}` : "—"}</p>
+            </div>
+  
+            <div className="welcome__mini">
+              <h3>Points</h3>
+              <p className="stat">{myPoints}</p>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="mini_card_1">
-        <h3>Ranking</h3>
-        <p className="stat">{rank ? `#${rank}` : "—"}</p>
-      </div>
-
-      <div className="mini_card_2">
-        <h3>Points</h3>
-        <p className="stat">{myPoints}</p>
-      </div>
-    </div>
+    </section>
   );
+  
+  
 }
 
 export default Welcome;
