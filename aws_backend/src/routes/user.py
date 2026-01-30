@@ -55,7 +55,15 @@ def create_user(data: dict):
     col.update_one({"email": email}, update_doc, upsert=True)
 
     user = col.find_one({"email": email})
-    return 200, {"ok": True, "user_id": str(user["_id"])}
+    return 200, {
+    "ok": True,
+    "user_id": str(user["_id"]),
+    "admin": bool(user.get("admin", False)),
+    "points": int(user.get("points", 0)),
+    "position": user.get("position", "Member"),
+    "name": user.get("name", ""),
+    "img": user.get("img", ""),
+    }
 
 # function to delete specific user
 def delete_user(user_id: str):
