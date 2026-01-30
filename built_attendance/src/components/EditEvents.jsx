@@ -173,15 +173,24 @@ function AdminUpcomingEvents({ eventName }) {
                     <input
                       className="events__input"
                       value={draft.name}
-                      onChange={(ev) =>
-                        setDraft((d) => ({ ...d, name: ev.target.value }))
-                      }
+                      onChange={(ev) => setDraft((d) => ({ ...d, name: ev.target.value }))}
                       placeholder="Event name"
                     />
                   ) : (
-                    e.name
+                    <>
+                      <span className="events__nameText">{e.name}</span>
+
+                      <span
+                        className="events__idTip"
+                        data-tip={`Event ID: ${String(e._id)}`}
+                        aria-label={`Event ID: ${String(e._id)}`}
+                      >
+                        ⓘ
+                      </span>
+                    </>
                   )}
-                </span>
+              </span>
+
 
                 {/* date */}
                 <span className="events__cell">

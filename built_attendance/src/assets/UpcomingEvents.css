@@ -215,3 +215,70 @@
     font-size: 16px;
   }
 }
+
+/* keeps long names from pushing the info icon off */
+.events__nameText{
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* custom tooltip trigger */
+.events__idTip{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 8px;
+  padding: 2px 6px;
+  border-radius: 6px;
+
+  opacity: 0.6;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* tooltip bubble */
+.events__idTip::after{
+  content: attr(data-tip);
+
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%);
+
+  background: #2b2b2b;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* tooltip arrow */
+.events__idTip::before{
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%);
+
+  border: 6px solid transparent;
+  border-top-color: #2b2b2b;
+
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* show on hover */
+.events__idTip:hover::after,
+.events__idTip:hover::before{
+  opacity: 1;
+}
