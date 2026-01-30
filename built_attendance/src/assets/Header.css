@@ -3,33 +3,117 @@
     padding: 10px 20px;
     align-items: center;
     background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
-}
-
-
-.header-button {
-    color: white;
-    margin: 0;
-    background-color: #8b4513;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.container {
+  }
+  
+  .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.built-img  {
+  }
+  
+  /* Keep your buttons */
+  .header-button {
+    color: white;
+    margin: 0;
+    background-color: #B57757;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 800;
+  }
+  
+  .built-img  {
     height: 5.5vw;
     width: auto;
-}
-
-a {
+  }
+  
+  a {
     text-decoration: none;
     outline: none;
-}
-
-a-image-link:focus {
-    outline: none;
-}
+  }
+  
+  /* --- Profile dropdown styles --- */
+  
+  .user-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* clickable pill (avatar + name + caret) */
+  .user-trigger {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+  
+    background: none;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 999px;
+  }
+  
+  .user-trigger:hover {
+    background: rgba(255, 255, 255, 0.22);
+  }
+  
+  .user-profile {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* first name */
+  .user-name {
+    color: white;
+    font-weight: 800;
+    font-size: 18px;
+    white-space: nowrap;
+  }
+  
+  /* caret */
+  .caret {
+    color: white;
+    font-size: 14px;
+    line-height: 1;
+    transform: translateY(1px);
+    transition: transform 0.15s ease;
+  }
+  
+  .caret.open {
+    transform: rotate(180deg) translateY(-1px);
+  }
+  
+  /* dropdown box */
+  .user-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    min-width: 160px;
+  
+    background: #FFF7F2;
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+    padding: 8px;
+    z-index: 1000;
+  }
+  
+  .logout-btn {
+    width: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+  
+    text-align: left;
+    padding: 10px 12px;
+    border-radius: 8px;
+  
+    font-weight: 800;
+    color: #B57757;
+  }
+  
+  .logout-btn:hover {
+    background: rgba(181, 119, 87, 0.12);
+  }
+  
