@@ -11,11 +11,10 @@
   min-height: 100vh;
   padding: 24px 0;
   display: block;
-  justify-content: center;
   color: var(--text);
 }
 
-/* NEW: centers title + card together */
+/* centers title + card together */
 .events__wrapper{
   display: flex;
   flex-direction: column;
@@ -43,70 +42,76 @@
   font-size: clamp(28px, 5vw, 48px);
   color: #a66a51;
   text-align: center;
-  max-width: 600px; /* keeps it aligned with card */
+  max-width: 600px;
 }
 
 .events__card{
   width: 35vw;
+  min-width: 520px;
+  max-width: 650px;
   padding: 20px;
   margin: 20px 0;
   border-radius: 15px;
   box-shadow: var(--shadow);
+  background: transparent;
 }
 
 /* Row layout */
 .events__row{
   display: flex;
-  justify-content: space-evenly; /* evenly spaced columns */
   align-items: center;
-  padding: 26px clamp(16px, 4vw, 36px);
+  gap: 14px;
+  padding: 26px 24px;
   border-bottom: 1px solid var(--divider);
+  justify-content: flex-start;
 }
 
-/* Column cells */
+/* Base cell */
 .events__cell{
   display: flex;
-  flex-direction: column;  /* text stacked */
   align-items: center;
   justify-content: center;
-  flex: 1;
   text-align: center;
 
   font-size: clamp(16px, 1.6vw, 22px);
   font-weight: 700;
+
+  min-width: 0;      /* IMPORTANT: prevents overflow in flex children */
   white-space: nowrap;
 }
 
-/* Title emphasis */
+/* Title column: takes remaining space and can wrap */
 .events__cell--title{
+  flex: 1 1 auto;
+  justify-content: flex-start;
+  text-align: left;
   font-weight: 800;
+
+  white-space: normal;
+  line-height: 1.2;
 }
 
-/* Points emphasis */
+/* Date column fixed-ish */
+.events__cell:not(.events__cell--title):not(.events__cell--edit){
+  flex: 0 0 120px;
+}
+
+/* Points column fixed-ish */
 .events__cell--pts{
+  flex: 0 0 110px;
   font-weight: 800;
 }
 
-.events__row:last-child{
-  border-bottom: 0;
-}
-
-/* Mobile */
-@media (max-width: 420px){
-  .events__row{
-    padding: 22px 18px;
-  }
-
-  .events__cell{
-    font-size: 16px;
-  }
-}
-
-
+/* Edit column */
 .events__cell--edit{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 0 0 auto;
+}
+
+.events__row:last-child{
+  border-bottom: 0;
 }
 
 /* small edit pencil button */
@@ -132,7 +137,8 @@
 /* inputs for inline edit */
 .events__input{
   width: 100%;
-  max-width: 220px;
+  max-width: 100%;
+  min-width: 0; /* IMPORTANT */
   padding: 8px 10px;
   border-radius: 8px;
   border: 2px solid rgba(0,0,0,0.15);
@@ -141,7 +147,6 @@
 }
 
 .events__input--pts{
-  max-width: 80px;
   text-align: center;
 }
 
@@ -186,4 +191,27 @@
   padding: 10px 12px;
   color: #b00020;
   font-weight: 800;
+}
+
+/* Responsive */
+@media (max-width: 700px){
+  .events__card{
+    width: 90vw;
+    min-width: 0;
+    max-width: 95vw;
+  }
+
+  .events__row{
+    padding: 22px 18px;
+    flex-wrap: wrap;
+  }
+
+  .events__cell:not(.events__cell--title):not(.events__cell--edit),
+  .events__cell--pts{
+    flex: 0 0 auto;
+  }
+
+  .events__cell{
+    font-size: 16px;
+  }
 }
