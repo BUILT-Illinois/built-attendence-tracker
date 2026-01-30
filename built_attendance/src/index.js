@@ -10,6 +10,7 @@ import Leaderboard from './pages/leaderboard';
 import Header from './components/Header';
 import CheckIn from './pages/CheckIn';
 import Admin from './pages/Admin';
+import CreateEvent from './pages/CreateEvent';
 
 const root = document.getElementById("root");
 
@@ -24,6 +25,7 @@ ReactDOM.createRoot(root).render(
       <Route path='events' element={<Events/>}/>
       <Route path='checkin' element={<CheckIn/>}/>
       <Route path='admin' element={<Admin/>}/>
+      <Route path='create' element={<CreateEvent/>}/>
       
     </Routes>
   </BrowserRouter>,
